@@ -13,11 +13,12 @@
 
 ```
     {
-    "user_input": [0, 0, 0, 1, 1, 1, 0, 1],
-    "N": 10
+        "date" :"01_06_2023"
+        "user_input": [0, 0, 0, 1, 1, 1],
+        "N": 10
     }
 ```
-
+user_input = pilihan user dengan urutan Bahari, Budaya, Cagar Alam, Pusat Perbelanjaan, Tempat Ibadah, Taman Hiburan
 output(indexed recommend):
 ```
 {

@@ -12,3 +12,9 @@ def enhanced_similarity(features, user_input, ratings, sentiments, alpha=0.3, be
     sentiments_scaled = (sentiments - tf.reduce_min(sentiments)) / (tf.reduce_max(sentiments) - tf.reduce_min(sentiments))
     final_scores = alpha * sim_scores + beta * (0.5 * ratings_scaled + 0.5 * sentiments_scaled)
     return final_scores
+
+def weather_decider(m):
+    if 10 <= m <= 3: 
+        return 0
+    else: #kemarau == 1
+        return 1

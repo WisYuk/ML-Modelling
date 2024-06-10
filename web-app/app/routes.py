@@ -2,13 +2,19 @@ from flask import request, jsonify
 from flask_restful import Resource
 import pandas as pd
 import tensorflow as tf
-from .model import enhanced_similarity
+from .model import enhanced_similarity, weather_decider
 import asyncio
 
 class Recommendation(Resource):
     async def post(self):
         data = request.get_json()  # This should not be awaited as it is a synchronous method
-        user_input = tf.constant(data['user_input'], tf.float32)
+        tgl = data['date'].split('_')
+        l = []
+        if weather_decider(int(tgl[1])):
+            l = [0,1]
+        else:
+            l = [1,0]
+        user_input = tf.constant(data['user_input'] + l, tf.float32)
 
         # Load your dummy CSV file
         kk = pd.read_csv('dummy_dataset_model.csv')
