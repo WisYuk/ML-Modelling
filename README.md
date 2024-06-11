@@ -4,7 +4,7 @@
 
 1. Clone This repo
 2. `cd web-app`
-3. `pip install requirements.txt`
+3. `pip install -r requirements.txt`
 4. `python3 run.py`
 
 # Routes
