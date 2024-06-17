@@ -14,13 +14,15 @@ class Recommendation(Resource):
             l = [0,1]
         else:
             l = [1,0]
+        print(data['user_input'] + l)
         user_input = tf.constant(data['user_input'] + l, tf.float32)
 
         # Load your dummy CSV file
-        kk = pd.read_csv('dummy_dataset_model.csv')
+        kk = pd.read_csv('data_final.csv')
         features = tf.constant(kk.iloc[:, :8].to_numpy(), tf.float32)
-        ratings = tf.constant(kk.iloc[:, 8].to_numpy(), tf.float32)
-        sentiments = tf.constant(kk.iloc[:, 9].to_numpy(), tf.float32)
+        ratings = tf.constant(kk.iloc[:, 9].to_numpy(), tf.float32)
+        # print(ratings)
+        sentiments = tf.constant(kk.iloc[:, 8].to_numpy(), tf.float32)
 
         recommendations = enhanced_similarity(features, user_input, ratings, sentiments)
         sorted_indices = tf.argsort(recommendations, direction='DESCENDING')
