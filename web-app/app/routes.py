@@ -27,7 +27,7 @@ class Recommendation(Resource):
         recommendations = enhanced_similarity(features, user_input, ratings, sentiments)
         sorted_indices = tf.argsort(recommendations, direction='DESCENDING')
         N = data.get('N', 10)
-        top_N_indices = sorted_indices[:N].numpy().tolist()
+        top_N_indices = (sorted_indices[:N].numpy()+1).tolist()
 
         return jsonify({"top_N_indices": top_N_indices})
 
